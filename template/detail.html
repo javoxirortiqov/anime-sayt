@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ anime.name }}</title>
+
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+.background{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:url('{{ anime.rasm.url }}');
+    background-size:cover;
+    background-position:center;
+    filter:blur(15px) brightness(.25);
+    transform:scale(1.1);
+    z-index:-2;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(15,23,42,.95));
+    z-index:-1;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+    display:flex;
+    gap:50px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.poster{
+    flex:0 0 320px;
+}
+
+.poster img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+.info{
+    flex:1;
+}
+
+.back{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    padding:12px 22px;
+    border-radius:10px;
+    margin-bottom:25px;
+    transition:.3s;
+}
+
+.back:hover{
+    background:#1d4ed8;
+}
+
+h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.tags{
+    margin-bottom:25px;
+}
+
+.tag{
+    display:inline-block;
+    background:#7c3aed;
+    padding:8px 18px;
+    border-radius:20px;
+    margin-right:10px;
+    font-weight:bold;
+}
+
+.year{
+    background:#0ea5e9;
+}
+
+.description{
+    font-size:20px;
+    line-height:1.8;
+    color:#d1d5db;
+    margin-top:20px;
+}
+
+.button{
+    margin-top:40px;
+}
+
+.button button{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:16px 35px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.button button:hover{
+    background:#b91c1c;
+    transform:scale(1.05);
+}
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+    text-align:center;
+}
+
+.poster{
+    width:280px;
+}
+
+h1{
+    font-size:40px;
+}
+
+.description{
+    font-size:18px;
+}
+
+}
+
+    </style>
+
+</head>
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="container">
+
+    <div class="poster">
+        <img src="{{ anime.rasm.url }}" alt="{{ anime.name }}">
+    </div>
+
+    <div class="info">
+
+        <a href="{% url 'home' %}" class="back">
+            ← Orqaga
+        </a>
+
+        <h1>{{ anime.name }}</h1>
+
+        <div class="tags">
+            <span class="tag">
+                🎭 {{ anime.janr }}
+            </span>
+
+            <span class="tag year">
+                📅 {{ anime.yili }}
+            </span>
+        </div>
+
+        <div class="description">
+            {{ anime.izoh }}
+        </div>
+
+        <div class="button">
+            <button>▶ Смотреть</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
